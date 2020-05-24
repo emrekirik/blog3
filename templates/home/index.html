@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+ {% load static %}
+ <!-- NAVBAR -->
+{% block body %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{% static 'img/2.jpg' %}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Blog</h1>
+            <span class="subheading">Kişisel web sitesi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for item in post %}
+        <hr>
+       <div class="post-preview">
+          <a href="{{item.get_absolute_url}}">
+            <h2 class="post-title">
+              {{item.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{item.subtitle|truncatechars:150|linebreaks}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{item.author}}</a>
+              {{item.created_at}}
+            </p>
+        </div>
+        
+       {% endfor %}
+       
+       
+        <!-- Pager -->
+        <div class="clearfix">
+          {% comment %} <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+{% endblock body %}
+
+<!-- footer -->
+
+
