@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post,About
 from django.utils import timezone
 
 
@@ -12,7 +12,11 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'about.html', {})
+    hakkimda = About.objects.get(id=1)
+    context = {
+        'hakkimda' : hakkimda
+    }
+    return render(request, 'about.html', context)
 
 
 def contact(request):
@@ -24,4 +28,4 @@ def detail(request, id):
     context = {
         'post' : post,
     }
-    return render(request, 'home/detail.html' , context)
+    return render(request, 'home/detail.html' , context,)
